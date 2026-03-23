@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>めろでぃノート｜忘れにくい作曲アイデアメモ</title>
+  </head>
+
+  <body>
+    <main>
+
+      <section class="formArea">
+        <header class="head">
+          <img src="{{ url_for('static', filename='images/ヘッダー_1.png') }}" alt="めろでぃノート">
+        </header>
+
+        <form method="POST">
+          <label for="song_title">タイトル</label><br>
+          <input type="text" id="song_title" name="song_title"><br><br>
+
+          <label>鼻歌</label><br>
+          <audio id="audioPlayback" controls></audio>
+          <input type="hidden" id="audio_filename" name="audio_filename">
+          <div class="rec">
+            <button type="button" id="recordBtn">録音開始</button>
+            <button type="button" id="stopBtn" disabled>停止</button>
+          </div>
+          <br>
+
+          <label for="song_genre">ジャンル</label><br>
+          <select id="song_genre" name="song_genre">
+            <option value="(未定)">(未定)</option>
+            <option value="ポップス">ポップス</option>
+            <option value="ロック">ロック</option>
+            <option value="バラード">バラード</option>
+            <option value="アニメ">アニメ</option>
+            <option value="エレクトロニカ">エレクトロニカ</option>
+            <option value="ダンス">ダンス</option>
+            <option value="EDM">EDM</option>
+            <option value="ダブステップ">ダブステップ</option>
+            <option value="エレクトロスウィング">エレクトロスウィング</option>
+            <option value="ハイパーフリップ">ハイパーフリップ</option>
+            <option value="ハウス">ハウス</option>
+            <option value="テクノ">テクノ</option>
+            <option value="R＆B">R＆B</option>
+            <option value="ヒップホップ">ヒップホップ</option>
+            <option value="レゲエ">レゲエ</option>
+            <option value="クラシック">クラシック</option>
+            <option value="ジャズ">ジャズ</option>
+            <option value="メタル">メタル</option>
+            <option value="ハードコア">ハードコア</option>
+            <option value="チップチューン">チップチューン</option>
+            <option value="ボカロ">ボカロ</option>
+            <option value="BGM">BGM</option>
+            <option value="音ゲー">音ゲー</option>
+            <option value="ワルツ">ワルツ</option>
+            <option value="シネマティック">シネマティック</option>
+            <option value="アラブ">アラブ</option>
+            <option value="ケルト">ケルト</option>
+            <option value="ボサノヴァ">ボサノヴァ</option>
+            <option value="吹奏楽">吹奏楽</option>
+            <option value="雅楽">雅楽</option>
+            <option value="演歌">演歌</option>
+            <option value="童謡">童謡</option>
+          </select><br><br>
+
+          <label for="song_genre_sub">サブジャンル</label><br>
+          <select id="song_genre_sub" name="song_genre_sub">
+            <option value="(未定)">(未定)</option>
+            <option value="ポップス">ポップス</option>
+            <option value="ロック">ロック</option>
+            <option value="バラード">バラード</option>
+            <option value="アニメ">アニメ</option>
+            <option value="エレクトロニカ">エレクトロニカ</option>
+            <option value="ダンス">ダンス</option>
+            <option value="EDM">EDM</option>
+            <option value="ダブステップ">ダブステップ</option>
+            <option value="エレクトロ・スウィング">エレクトロスウィング</option>
+            <option value="ハイパーフリップ">ハイパーフリップ</option>
+            <option value="ハウス">ハウス</option>
+            <option value="テクノ">テクノ</option>
+            <option value="R＆B">R＆B</option>
+            <option value="ヒップホップ">ヒップホップ</option>
+            <option value="レゲエ">レゲエ</option>
+            <option value="クラシック">クラシック</option>
+            <option value="ジャズ">ジャズ</option>
+            <option value="メタル">メタル</option>
+            <option value="ハードコア">ハードコア</option>
+            <option value="チップチューン">チップチューン</option>
+            <option value="ボカロ">ボカロ</option>
+            <option value="BGM">BGM</option>
+            <option value="音ゲー">音ゲー</option>
+            <option value="ワルツ">ワルツ</option>
+            <option value="シネマティック">シネマティック</option>
+            <option value="アラブ">アラブ</option>
+            <option value="ケルト">ケルト</option>
+            <option value="ボサノヴァ">ボサノヴァ</option>
+            <option value="吹奏楽">吹奏楽</option>
+            <option value="雅楽">雅楽</option>
+            <option value="演歌">演歌</option>
+            <option value="童謡">童謡</option>
+          </select><br><br>
+
+          <label for="song_key">キー</label><br>
+          <select id="song_key" name="song_key">
+            <option value="(未定)">(未定)</option>
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="D">D</option>
+            <option value="D#">D#</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+            <option value="A">A</option>
+            <option value="A#">A#</option>
+            <option value="B">B</option>
+          </select><br><br>
+
+          <label for="song_scale">スケール</label><br>
+          <select id="song_scale" name="song_scale">
+            <option value="(未定)">(未定)</option>
+            <option value="メジャー">メジャー</option>
+            <option value="マイナー">マイナー</option>
+            <option value="ドリアン">ドリアン</option>
+            <option value="フリジアン">フリジアン</option>
+            <option value="リディアン">リディアン</option>
+            <option value="ミクソリディアン">ミクソリディアン</option>
+            <option value="ロクリアン">ロクリアン</option>
+          </select><br><br>
+
+          <label for="song_modulation">転調</label><br>
+          <select id="song_modulation" name="song_modulation">
+            <option value="(未定)">(未定)</option>
+            <option value="なし">なし</option>
+            <option value="同主調">同主調</option>
+            <option value="平行調">平行調</option>
+            <option value="属調">属調</option>
+            <option value="下属調">下属調</option>
+            <option value="その他">その他</option>
+          </select><br><br>
+
+          <label for="song_chord">コード進行</label><br>
+          <textarea id="song_chord" name="song_chord" rows="5"></textarea><br><br>
+
+          <label for="song_lyrics">歌詞</label><br>
+          <textarea id="song_lyrics" name="song_lyrics" rows="5"></textarea><br><br>
+
+          <label for="song_explanation">補足</label><br>
+          <textarea id="song_explanation" name="song_explanation" rows="5"></textarea><br><br>
+
+          <button
+            type="submit"
+            class="submitBtn"
+            onclick="sessionStorage.setItem('scrollY', window.scrollY)">
+            保存する
+          </button>
+        </form>
+      </section>
+
+      <section class="dataArea">
+        <h2>保存済みメモ</h2>
+
+        {% if memos %}
+          {% for memo in memos %}
+            <div class="memoItem">
+
+              <strong>
+                {% if memo.title %}
+                  {{ memo.title }}
+                {% else %}
+                  タイトルなし
+                {% endif %}
+              </strong><br>
+
+              <form method="POST" action="{{ url_for('delete', index=loop.index0) }}">
+                <button
+                  type="submit"
+                  class="deleteBtn"
+                  onclick="sessionStorage.setItem('scrollY', window.scrollY)">
+                  削除
+                </button>
+              </form>
+
+              {% if memo.genre != '(未定)' %}
+                ジャンル：{{ memo.genre }}
+                {% if memo.genre_sub and memo.genre_sub != '(未定)' %}
+                  / {{ memo.genre_sub }}
+                {% endif %}
+                <br>
+              {% endif %}
+
+              {% set details = [] %}
+              {% if memo.key != '(未定)' %}
+                {% set _ = details.append('キー：' ~ memo.key) %}
+              {% endif %}
+              {% if memo.scale != '(未定)' %}
+                {% set _ = details.append('スケール：' ~ memo.scale) %}
+              {% endif %}
+              {% if memo.modulation != '(未定)' %}
+                {% set _ = details.append('転調：' ~ memo.modulation) %}
+              {% endif %}
+
+              {% if details %}
+                {{ details | join('<br>') | safe }}<br>
+              {% endif %}
+
+              {% if memo.chord %}
+                コード進行：{{ memo.chord }}<br>
+              {% endif %}
+              {% if memo.lyrics %}
+                歌詞：{{ memo.lyrics }}<br>
+              {% endif %}
+              {% if memo.explanation %}
+                補足：{{ memo.explanation }}<br>
+              {% endif %}
+
+              {% if memo.audio %}
+                <audio controls>
+                  <source src="/recordings/{{ memo.audio }}" type="audio/webm">
+                </audio><br>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>メモがありません</p>
+        {% endif %}
+
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="contact">
+        <p>
+          <a href="mailto:dimi.renraku@gmail.com">お問い合わせ</a>｜
+          <a href="https://dimitimi.github.io/Dimi-s-house/" target="_blank" rel="noopener noreferrer">このツールの作成者</a>
+        </p>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 めろでぃメモ</p>
+      </div>
+    </footer>
+
+    <script>
+      let mediaRecorder;
+      let audioChunks = [];
+
+      const recordBtn = document.getElementById('recordBtn');
+      const stopBtn = document.getElementById('stopBtn');
+      const audioPlayback = document.getElementById('audioPlayback');
+      const audioFilenameInput = document.getElementById('audio_filename');
+
+      recordBtn.onclick = async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+
+          mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+
+          mediaRecorder.onstop = async () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const audioURL = URL.createObjectURL(audioBlob);
+            audioPlayback.src = audioURL;
+
+            const filename = "recording_" + Date.now() + ".webm";
+
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+              const base64Data = reader.result;
+
+              await fetch("/upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "audio_data=" + encodeURIComponent(base64Data) + "&filename=" + encodeURIComponent(filename)
+              });
+
+              audioFilenameInput.value = filename;
+              alert("録音を保存しました！");
+            };
+            reader.readAsDataURL(audioBlob);
+          };
+
+          mediaRecorder.start();
+          recordBtn.disabled = true;
+          stopBtn.disabled = false;
+
+        } catch (err) {
+          alert("マイクにアクセスできません: " + err);
+        }
+      };
+
+      stopBtn.onclick = () => {
+        mediaRecorder.stop();
+        recordBtn.disabled = false;
+        stopBtn.disabled = true;
+      };
+    </script>
+
+    <script>
+      window.onload = () => {
+        const scrollY = sessionStorage.getItem("scrollY");
+        if (scrollY) {
+          window.scrollTo(0, scrollY);
+          sessionStorage.removeItem("scrollY");
+        }
+      };
+    </script>
+
+  </body>
+</html>
