@@ -6,21 +6,19 @@ import json
 app = Flask(__name__)
 
 # =========================
-# Render 永続ディスク対応
+# Render 安全版 永続ディスク（相対パス）
 # =========================
-BASE_DIR = "/data"  # ← Render Disk
+BASE_DIR = "data"  # アプリ直下の data フォルダ
 MEMO_FILE = os.path.join(BASE_DIR, "memos.json")
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "recordings")
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 # =========================
 # 初期フォルダ作成
 # =========================
 os.makedirs(BASE_DIR, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
 
 # =========================
 # メモ読み込み
@@ -34,14 +32,12 @@ def load_memos():
             return []
     return []
 
-
 # =========================
 # メモ保存
 # =========================
 def save_memos(memos):
     with open(MEMO_FILE, "w", encoding="utf-8") as f:
         json.dump(memos, f, ensure_ascii=False, indent=2)
-
 
 # =========================
 # トップページ
@@ -71,7 +67,6 @@ def index():
 
     return render_template("index.html", memos=memos)
 
-
 # =========================
 # 音声アップロード
 # =========================
@@ -98,14 +93,12 @@ def upload():
 
     return "", 200
 
-
 # =========================
-# 音声配信（←これ追加が重要）
+# 音声配信
 # =========================
 @app.route("/recordings/<filename>")
 def serve_audio(filename):
     return redirect(url_for('static', filename=f'recordings/{filename}'))
-
 
 # =========================
 # 削除
@@ -128,9 +121,8 @@ def delete(index):
 
     return redirect(url_for("index"))
 
-
 # =========================
-# Render用起動設定
+# Render 用起動設定
 # =========================
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
